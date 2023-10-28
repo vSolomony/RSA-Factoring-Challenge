@@ -1,10 +1,18 @@
-#!/usr/bin/python3
 import sys
-import sympy
 
 
 def factorize(n):
-    factors = sympy.factorint(n)
+    factors = {}
+    divisor = 2
+    while n > 1:
+        if n % divisor == 0:
+            if divisor not in factors:
+                factors[divisor] = 1
+            else:
+                factors[divisor] += 1
+            n //= divisor
+        else:
+            divisor += 1
     return factors
 
 
@@ -28,3 +36,4 @@ if __name__ == "__main__":
     else:
         filename = sys.argv[1]
         main(filename)
+
